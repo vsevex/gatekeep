@@ -1,0 +1,75 @@
+{
+  "@@locale": "en",
+  "queueTitle": "Waiting Room",
+  "@queueTitle": {
+    "description": "Title for the waiting room screen"
+  },
+  "joiningQueue": "Joining queue...",
+  "@joiningQueue": {
+    "description": "Message shown when joining queue"
+  },
+  "positionInQueue": "You are #{position} in line",
+  "@positionInQueue": {
+    "description": "Position in queue message",
+    "placeholders": {
+      "position": {
+        "type": "int"
+      }
+    }
+  },
+  "estimatedWait": "Estimated wait: {duration}",
+  "@estimatedWait": {
+    "description": "Estimated wait time message",
+    "placeholders": {
+      "duration": {
+        "type": "String"
+      }
+    }
+  },
+  "admitted": "You're in!",
+  "@admitted": {
+    "description": "Message shown when user is admitted"
+  },
+  "tokenExpired": "Your admission token has expired",
+  "@tokenExpired": {
+    "description": "Message shown when admission token has expired"
+  },
+  "errorOccurred": "An error occurred",
+  "@errorOccurred": {
+    "description": "Message shown when an error occurs"
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Message shown when user wants to retry"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Message shown when user wants to cancel"
+  },
+  "heartbeatStatus": "Connection active",
+  "@heartbeatStatus": {
+    "description": "Message shown when connection is active"
+  },
+  "heartbeatFailed": "Connection lost",
+  "@heartbeatFailed": {
+    "description": "Message shown when connection is lost"
+  },
+  "minutes": "{count, plural, =0{0 minutes} =1{1 minute} other{{count} minutes}}",
+  "@minutes": {
+    "description": "Minutes pluralization",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "seconds": "{count, plural, =0{0 seconds} =1{1 second} other{{count} seconds}}",
+  "@seconds": {
+    "description": "Seconds pluralization",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  }
+}
