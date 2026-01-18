@@ -42,14 +42,34 @@ class DefaultResponseInterceptor implements ResponseInterceptor {
       return error;
     }
 
+    // Try to extract URL from error message
+    String? extractUrl(Object error) {
+      final errorStr = error.toString();
+      // Try to find URL patterns in error messages
+      final uriMatch = RegExp(r'https?://[^\s]+').firstMatch(errorStr);
+      if (uriMatch != null) {
+        return uriMatch.group(0);
+      }
+      // Check if it's a SocketException with host info
+      final hostMatch = RegExp(r'host[:\s]+([^\s,)]+)').firstMatch(errorStr);
+      if (hostMatch != null) {
+        return hostMatch.group(1);
+      }
+      return null;
+    }
+
     // Handle network errors
     if (error.toString().contains('SocketException') ||
-        error.toString().contains('Failed host lookup')) {
-      return NetworkException.connectionError('', error);
+        error.toString().contains('Failed host lookup') ||
+        error.toString().contains('Connection refused') ||
+        error.toString().contains('Network is unreachable')) {
+      final url = extractUrl(error) ?? 'unknown';
+      return NetworkException.connectionError(url, error);
     }
 
     if (error.toString().contains('TimeoutException')) {
-      return NetworkException.timeout('', const Duration(seconds: 30));
+      final url = extractUrl(error) ?? 'unknown';
+      return NetworkException.timeout(url, const Duration(seconds: 30));
     }
 
     // Generic error - create a concrete exception
